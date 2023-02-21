@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "EKps4ZHlXDvbXxYArfousjfzJBAPexF3AxXdmaRSAPI=",
+  "Source": "CRUD_JWT_Auth",
+  "BasePath": "_content/CRUD_JWT_Auth",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

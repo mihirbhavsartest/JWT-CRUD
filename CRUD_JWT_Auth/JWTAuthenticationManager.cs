@@ -1,4 +1,5 @@
-﻿using CRUD_WO_ORM.DataSource;
+﻿using CRUD_JWT_Auth.DataSource;
+using CRUD_WO_ORM.DataSource;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,13 +11,15 @@ namespace CRUD_JWT_Auth
     public class JWTAuthenticationManager : IJWTAuthenticationManager
     {
        
-        private readonly DataSource _dataSource;
+        private readonly IDataSource _dataSource;
         private readonly string key;
-        public JWTAuthenticationManager(string key)
+        
+        public JWTAuthenticationManager(string key, IDataSource dataSource)
         {
+            this._dataSource= dataSource;
             this.key = key;
-            _dataSource = new DataSource();
         }
+        
         public string? Authenticate(string username, string password, out string? name)
         {
             NpgsqlCommand command =_dataSource.source.CreateCommand($"Select * from users where username='{username}' and password='{password}'");

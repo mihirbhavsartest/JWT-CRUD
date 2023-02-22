@@ -2,6 +2,6 @@
 {
     public interface IJWTAuthenticationManager
     {
-        public string Authenticate(string username, string password, out String? name);
+        public string? Authenticate(string username, string password, out String? name);
     }
 }

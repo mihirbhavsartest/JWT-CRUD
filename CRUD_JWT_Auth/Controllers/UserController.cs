@@ -1,4 +1,5 @@
-﻿using CRUD_JWT_Auth.Models;
+﻿using CRUD_JWT_Auth.DataSource;
+using CRUD_JWT_Auth.Models;
 using CRUD_WO_ORM.DataSource;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,12 +13,14 @@ namespace CRUD_JWT_Auth.Controllers
 {
     public class UserController : Controller
     {
-        private readonly DataSource _dataSource;
+        private readonly IDataSource _dataSource;
         private readonly IJWTAuthenticationManager jwtAuthenticationManager;
-        public UserController(IJWTAuthenticationManager jwtAuthenticationManager)
+
+        
+        public UserController(IJWTAuthenticationManager jwtAuthenticationManager, IDataSource ds)
         {
+            _dataSource = ds;
             this.jwtAuthenticationManager = jwtAuthenticationManager;
-            _dataSource = new DataSource();
         }
 
         [Authorize]

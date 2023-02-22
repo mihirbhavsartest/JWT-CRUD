@@ -1,4 +1,6 @@
 using CRUD_JWT_Auth;
+using CRUD_JWT_Auth.DataSource;
+using CRUD_WO_ORM.DataSource;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -27,7 +29,9 @@ builder.Services.AddAuthentication(x =>
     };
 
 });
-builder.Services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key));
+DataSource ds = new DataSource();
+builder.Services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key,ds));
+builder.Services.AddSingleton<IDataSource>(ds);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
